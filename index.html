@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Roger John | DevOps Portfolio</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial, Helvetica, sans-serif;
+  scroll-behavior:smooth;
+}
+body{
+  background:#0f172a;
+  color:white;
+  line-height:1.6;
+}
+
+/* NAVBAR */
+nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 10%;
+  background:#020617;
+  position:sticky;
+  top:0;
+  z-index:1000;
+}
+nav h3{ color:#38bdf8; }
+nav a{
+  color:white;
+  margin-left:20px;
+  text-decoration:none;
+  transition:0.3s;
+}
+nav a:hover{ color:#38bdf8; }
+
+/* HERO */
+.hero{
+  height:90vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:20px;
+}
+.hero h1{
+  font-size:52px;
+  margin-bottom:10px;
+  animation:fadeIn 2s ease;
+}
+.hero p{ font-size:22px; color:#94a3b8; }
+
+/* SECTIONS */
+section{ padding:80px 10%; }
+h2{ margin-bottom:20px; color:#38bdf8; }
+
+/* SKILLS */
+.skills{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:15px;
+}
+.skill{
+  background:#1e293b;
+  padding:15px;
+  border-radius:8px;
+  text-align:center;
+  transition:0.3s;
+}
+.skill:hover{
+  background:#334155;
+  transform:translateY(-5px);
+}
+
+/* DEVOPS FOCUS */
+.devops ul{ list-style:none; }
+.devops li{
+  background:#1e293b;
+  padding:12px;
+  margin:8px 0;
+  border-radius:6px;
+}
+
+/* PROJECTS */
+.projects{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:20px;
+}
+.card{
+  background:#1e293b;
+  border-radius:10px;
+  transition:transform 0.25s ease;
+  overflow:hidden; /* keep rounded corners on animated content */
+  border:1px solid #0b1222;
+}
+.card:hover{ transform:scale(1.03); }
+
+/* Expandable header */
+.card-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px;
+  cursor:pointer;
+  outline:none;
+}
+.card-title{
+  font-size:18px;
+  font-weight:700;
+}
+.card-subtitle{
+  color:#94a3b8;
+  font-size:14px;
+  margin-top:4px;
+}
+.card-summary{
+  color:#cbd5e1;
+  font-size:14px;
+  margin-top:10px;
+}
+
+/* Toggle icon */
+.toggle-icon{
+  margin-left:16px;
+  color:#94a3b8;
+  transition:transform 0.25s ease;
+  user-select:none;
+  font-size:18px;
+}
+.card.open .toggle-icon{ transform:rotate(180deg); }
+
+/* Expandable content */
+.card-content{
+  height:0;
+  overflow:hidden;
+  transition:height 0.3s ease;
+  background:#162031; /* slightly darker for contrast */
+  border-top:1px solid #0b1222;
+}
+.card-inner{
+  padding:18px 20px 22px 20px;
+}
+
+/* Bullets inside details */
+.ul-clean{
+  margin-top:8px;
+  padding-left:18px;
+}
+.ul-clean li{ margin:6px 0; }
+
+/* Link button */
+.link-btn{
+  display:inline-block;
+  margin-top:12px;
+  padding:10px 14px;
+  background:#0ea5e9;
+  color:#0b1222;
+  font-weight:700;
+  text-decoration:none;
+  border-radius:8px;
+  transition:filter 0.2s ease, transform 0.1s ease;
+}
+.link-btn:hover{ filter:brightness(1.1); }
+.link-btn:active{ transform:translateY(1px); }
+
+/* TIMELINE */
+.timeline{
+  border-left:2px solid #38bdf8;
+  padding-left:20px;
+}
+.timeline div{ margin-bottom:20px; }
+
+/* CONTACT */
+.contact a{
+  display:block;
+  margin:10px 0;
+  color:#38bdf8;
+  text-decoration:none;
+}
+.contact a:hover{ text-decoration:underline; }
+
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:20px;
+  background:#020617;
+  margin-top:40px;
+}
+
+/* ANIMATIONS */
+@keyframes fadeIn{
+  0%{opacity:0; transform:translateY(20px);}
+  100%{opacity:1; transform:translateY(0);}
+}
+.reveal{
+  opacity:0;
+  transform:translateY(40px);
+  transition:1s;
+}
+.reveal.active{
+  opacity:1;
+  transform:translateY(0);
+}
+</style>
+
+</head>
+
+<body>
+
+<nav>
+  <h3>Roger John</h3>
+  <div>
+    <a href="#about">About</a>
+    <a href="#interests">Interests</a>
+    <a href="#skills">Skills</a>
+    <a href="#devops">DevOps</a>
+    <a href="#projects">Projects</a>
+    <a href="#timeline">Journey</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>Roger John</h1>
+  <p>Aspiring DevOps Engineer | Site Reliability Engineering | Cloud Operations</p>
+</div>
+
+<!-- ABOUT -->
+<section id="about" class="reveal">
+  <h2>About Me</h2>
+  <p>
+    Aspiring DevOps Engineer with 3.5+ years of experience in Site Reliability
+    Engineering, Production Support and Cloud Operations.
+    <br><br>
+    Hands-on experience managing AWS infrastructure, monitoring enterprise
+    applications, troubleshooting production incidents and supporting CI/CD
+    deployments.
+    <br><br>
+    Experienced with observability platforms including Prometheus, Grafana,
+    Dynatrace, Datadog, Kibana and New Relic. Passionate about automation,
+    infrastructure reliability and building scalable cloud systems using
+    modern DevOps practices.
+  </p>
+</section>
+
+<!-- PERSONAL INTERESTS -->
+<section id="interests" class="reveal">
+  <h2>Personal Interests</h2>
+  <h3 style="margin-bottom:10px;color:#e2e8f0;">Passionate About Space &amp; Astronomy</h3>
+  <p style="color:#cbd5e1;">
+    Outside of my professional work, I am deeply passionate about space science, astronomy,
+    and stargazing. I frequently share this interest by conducting informal sessions for my
+    colleagues and children in my neighborhood.
+  </p>
+  <p style="margin-top:12px;">I enjoy teaching and creating awareness about topics such as:</p>
+  <ul class="ul-clean">
+    <li>The structure of the universe</li>
+    <li>Constellations and their history</li>
+    <li>Galaxies, nebulae, and deep‑sky objects</li>
+    <li>Satellites and space missions</li>
+    <li>How to read the night sky with the naked eye and basic equipment</li>
+  </ul>
+  <p style="margin-top:12px;color:#cbd5e1;">
+    I love helping others discover the beauty of the cosmos, and this interest
+    continues to inspire many of my personal projects.
+  </p>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="reveal">
+  <h2>Technical Skills</h2>
+  <div class="skills">
+    <div class="skill">AWS</div>
+    <div class="skill">Docker</div>
+    <div class="skill">Linux</div>
+    <div class="skill">Prometheus</div>
+    <div class="skill">Grafana</div>
+    <div class="skill">Dynatrace</div>
+    <div class="skill">Datadog</div>
+    <div class="skill">New Relic</div>
+    <div class="skill">Kibana</div>
+    <div class="skill">Zabbix</div>
+    <div class="skill">Python</div>
+    <div class="skill">Bash</div>
+    <div class="skill">Jenkins</div>
+    <div class="skill">Git</div>
+    <div class="skill">CI/CD</div>
+  </div>
+</section>
+
+<!-- DEVOPS FOCUS -->
+<section id="devops" class="reveal">
+  <h2>DevOps Focus</h2>
+  <div class="devops">
+    <ul>
+      <li>Infrastructure Automation</li>
+      <li>CI/CD Pipeline Implementation</li>
+      <li>Docker Containerization</li>
+      <li>AWS Infrastructure Architecture</li>
+      <li>Monitoring &amp; Observability Systems</li>
+      <li>Automation using Python and Bash</li>
+    </ul>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="reveal">
+  <h2>Projects</h2>
+
+  <div class="projects">
+
+    <!-- AWS High Availability Architecture -->
+    <div class="card" data-project="aws-ha">
+      <div class="card-header" role="button" tabindex="0" aria-expanded="false">
+        <div>
+          <div class="card-title">AWS High Availability Architecture</div>
+          <div class="card-subtitle">Scalable and fault‑tolerant IaaS on AWS</div>
+          <p class="card-summary">
+            Designed and implemented a production‑ready AWS foundation with ALB, Auto Scaling,
+            Route 53, secure networking, and managed back‑end services.
+          </p>
+        </div>
+        <span class="toggle-icon">⌄</span>
+      </div>
+      <div class="card-content" aria-hidden="true">
+        <div class="card-inner">
+          <p>
+            I designed and implemented a scalable, highly available AWS IaaS architecture following
+            industry best practices.
+          </p>
+          <p><strong>Architecture Components</strong></p>
+          <ul class="ul-clean">
+            <li>Application Load Balancer (ALB) routing to an Auto Scaling group of Tomcat EC2 instances</li>
+            <li>Amazon S3 for artifact storage</li>
+            <li>Amazon Route 53 (public &amp; private hosted zones) for DNS</li>
+            <li>Security Groups and least‑privilege access controls</li>
+            <li>Back‑end services: MySQL, RabbitMQ, and Memcached</li>
+          </ul>
+          <p style="margin-top:10px;">
+            This project strengthened my understanding of cloud architecture, scalability,
+            high availability, and deployment workflows on AWS.
+          </p>
+          <a class="link-btn" href="https://www.linkedin.com/posts/rogerjohn_building-scalable-aws-infrastructure-iaas-activity-7426513862730113024-M_8V?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAFCdIkwBOfARuO1lfT0M11YsJXAliFhXK50" target="_blank" rel="noopener noreferrer">
+            🔗 View LinkedIn Project Post
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Infrastructure Monitoring System -->
+    <div class="card" data-project="monitoring">
+      <div class="card-header" role="button" tabindex="0" aria-expanded="false">
+        <div>
+          <div class="card-title">Infrastructure Monitoring System</div>
+          <div class="card-subtitle">Prometheus + Node Exporter + Grafana + Slack Alerts</div>
+          <p class="card-summary">
+            Designed a complete observability workflow with metrics collection, dashboards, and alerting.
+          </p>
+        </div>
+        <span class="toggle-icon">⌄</span>
+      </div>
+      <div class="card-content" aria-hidden="true">
+        <div class="card-inner">
+
+          <p>
+            Excited to share one of my recent hands‑on DevOps projects where I designed and implemented 
+            a complete monitoring and alerting workflow for real‑time infrastructure observability.
+          </p>
+
+          <p><strong>Project Flow</strong></p>
+          <ul class="ul-clean">
+            <li>App Server → <strong>Node Exporter</strong> for system‑level metrics</li>
+            <li><strong>Prometheus</strong> scraping &amp; storing time‑series performance data</li>
+            <li><strong>Grafana</strong> for live dashboards and visualization</li>
+            <li><strong>Slack</strong> for instant proactive alert notifications</li>
+          </ul>
+
+          <p><strong>Key Highlights</strong></p>
+          <ul class="ul-clean">
+            <li>Configured Prometheus scrape jobs and monitoring targets</li>
+            <li>Built Grafana dashboards for CPU, memory, disk I/O, network &amp; system metrics</li>
+            <li>Created Grafana alert rules and integrated Slack webhook for rapid incident response</li>
+            <li>Enabled real‑time visibility into infrastructure health and inbound traffic patterns</li>
+          </ul>
+
+          <a class="link-btn" href="https://www.linkedin.com/posts/rogerjohn_devops-sre-prometheus-activity-7425992697871740928-1w1r?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAFCdIkwBOfARuO1lfT0M11YsJXAliFhXK50" target="_blank" rel="noopener noreferrer">
+            🔗 View LinkedIn Project Post
+          </a>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Automated Jenkins CI Pipeline -->
+    <div class="card" data-project="jenkins-ci">
+      <div class="card-header" role="button" tabindex="0" aria-expanded="false">
+        <div>
+          <div class="card-title">Automated Jenkins CI Pipeline</div>
+          <div class="card-subtitle">GitHub Webhooks → Jenkins → Docker → AWS ECR</div>
+          <p class="card-summary">
+            Event‑driven CI that builds and publishes versioned Docker images to ECR
+            on every push.
+          </p>
+        </div>
+        <span class="toggle-icon">⌄</span>
+      </div>
+      <div class="card-content" aria-hidden="true">
+        <div class="card-inner">
+          <p><strong>Building an Automated CI Pipeline with GitHub Webhooks, Jenkins &amp; AWS ECR</strong></p>
+          <p>
+            I designed and implemented an automated CI pipeline to build and manage Docker images
+            using Jenkins and AWS. With every Git push, the pipeline triggers automatically—delivering
+            continuous integration without manual intervention.
+          </p>
+          <p><strong>Project Flow</strong></p>
+          <ul class="ul-clean">
+            <li>GitHub (Webhook Trigger) &rarr; Jenkins Pipeline (Pipeline as Code)</li>
+            <li>Docker Image Build &rarr; Amazon ECR (Versioned Image Repository)</li>
+          </ul>
+          <p><strong>Key Highlights</strong></p>
+          <ul class="ul-clean">
+            <li>Configured GitHub Webhook to trigger Jenkins on every code push</li>
+            <li>Implemented a Jenkins Pipeline to automate Docker image builds</li>
+            <li>Integrated secure AWS credentials within Jenkins</li>
+            <li>Used dynamic image tagging via the <code>BUILD_NUMBER</code> strategy</li>
+            <li>Pushed versioned Docker images to Amazon ECR</li>
+            <li>Followed clean Docker practices using <code>nginx:alpine</code> and <code>.dockerignore</code></li>
+          </ul>
+          <p style="margin-top:10px;">
+            This project deepened my understanding of event‑driven CI workflows, container image
+            lifecycle management, and secure Jenkins–AWS integration. Coming from an SRE / Production
+            Support background focused on observability and AWS operations, building this automation
+            pipeline strengthens my end‑to‑end DevOps capability—from monitoring systems to automating
+            build workflows.
+          </p>
+
+          <a class="link-btn" href="https://www.linkedin.com/posts/rogerjohn_devops-cicd-project-aws-activity-7431496461344788480-cxGj?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAFCdIkwBOfARuO1lfT0M11YsJXAliFhXK50" target="_blank" rel="noopener noreferrer">
+            🔗 View LinkedIn Project Post
+          </a>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Python Monitoring Tool -->
+    <div class="card" data-project="python-tool">
+      <div class="card-header" role="button" tabindex="0" aria-expanded="false">
+        <div>
+          <div class="card-title">Python Monitoring Tool</div>
+          <div class="card-subtitle">Informatica IICS Secure Agent status</div>
+          <p class="card-summary">
+            Desktop utility using IICS REST APIs to reduce manual monitoring and speed up triage.
+          </p>
+        </div>
+        <span class="toggle-icon">⌄</span>
+      </div>
+      <div class="card-content" aria-hidden="true">
+        <div class="card-inner">
+          <p><strong>Highlights</strong></p>
+          <ul class="ul-clean">
+            <li>Polled IICS REST APIs for Secure Agent health and recent activity</li>
+            <li>Near real‑time status surface with simple desktop UI</li>
+            <li>Reduced manual checks and improved response time</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ISS Data ETL Pipeline -->
+    <div class="card" data-project="iss-etl">
+      <div class="card-header" role="button" tabindex="0" aria-expanded="false">
+        <div>
+          <div class="card-title">Project Highlight – ISS Data ETL Pipeline</div>
+          <div class="card-subtitle">ISS Real‑Time Location Tracker (NASA Open APIs)</div>
+          <p class="card-summary">
+            Automated ETL pipeline that captures, converts, and stores ISS coordinates for
+            historical analysis and visualization.
+          </p>
+        </div>
+        <span class="toggle-icon">⌄</span>
+      </div>
+      <div class="card-content" aria-hidden="true">
+        <div class="card-inner">
+          <p>
+            I developed a fully automated ETL pipeline that captures, processes, and stores
+            real‑time positional data of the International Space Station (ISS) using NASA's
+            open API ecosystem.
+          </p>
+          <p><strong>Key Features</strong></p>
+          <ul class="ul-clean">
+            <li><strong>Real‑Time Data Capture:</strong> Fetches the live ISS coordinates every 5 minutes</li>
+            <li><strong>Automated Timestamp Conversion:</strong> Converts UTC timestamps to IST</li>
+            <li><strong>Data Storage for Analytics:</strong> Appends processed data to a CSV for a historical dataset</li>
+            <li><strong>ETL Automation:</strong> Orchestrated end‑to‑end using Apache Airflow</li>
+            <li><strong>Lightweight Execution Layer:</strong> Python transforms with a Bash wrapper</li>
+          </ul>
+          <p style="margin-top:10px;"><strong>Tech Stack:</strong> Apache Airflow | Python | Bash | NASA Open APIs | CSV Storage</p>
+          <p style="margin-top:6px;"><strong>Purpose:</strong> Enables long‑term analysis and visualization of the ISS trajectory—useful for astronomy enthusiasts, data science exploration, and real‑time space observation dashboards.</p>
+
+          <a class="link-btn" href="https://www.linkedin.com/posts/rogerjohn_etl-from-iss-api-activity-7242470327484571649-YrvF?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAFCdIkwBOfARuO1lfT0M11YsJXAliFhXK50" target="_blank" rel="noopener noreferrer">
+            🔗 View LinkedIn Project Post
+          </a>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- JOURNEY -->
+<section id="timeline" class="reveal">
+  <h2>Career Journey</h2>
+  <div class="timeline">
+    <div>
+      <strong>Diploma Engineering</strong>
+      <p>2012 - 2015</p>
+    </div>
+    <div>
+      <strong>L&amp;T – Site Engineer</strong>
+      <p>2015 - 2017</p>
+    </div>
+    <div>
+      <strong>Bachelor of Engineering</strong>
+      <p>2017 - 2021</p>
+    </div>
+    <div>
+      <strong>TCS – Assistant System Engineer</strong>
+      <p>2022 - 2024</p>
+    </div>
+    <div>
+      <strong>Wolters Kluwer – Product Support Engineer / SRE</strong>
+      <p>Nov 2024 - Present</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="reveal">
+  <h2>Contact</h2>
+  <div class="contact">
+    <a href="mailto:rj.rogerjohn@outlook.com">Email: rj.rogerjohn@outlook.com</a>
+    <a href="https://www.linkedin.com/in/rogerjohn/" target="_blank" rel="noopener noreferrer">LinkedIn Profile</a>
+    <a href="https://x.com/rojergohn" target="_blank" rel="noopener noreferrer">X Profile</a>
+    <p>Phone: +91 7708517264</p>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Roger John | DevOps Portfolio</p>
+</footer>
+
+<script>
+/* Reveal on scroll */
+function reveal(){
+  var reveals = document.querySelectorAll(".reveal");
+  for(var i = 0; i < reveals.length; i++){
+    var windowHeight = window.innerHeight;
+    var elementTop = reveals[i].getBoundingClientRect().top;
+    var elementVisible = 150;
+    if(elementTop < windowHeight - elementVisible){
+      reveals[i].classList.add("active");
+    }
+  }
+}
+window.addEventListener("scroll", reveal);
+window.addEventListener("load", reveal);
+
+/* Expand/Collapse cards (smooth height animation) */
+function setAria(header, expanded){
+  header.setAttribute("aria-expanded", expanded ? "true" : "false");
+  var content = header.parentElement.querySelector(".card-content");
+  if(content) content.setAttribute("aria-hidden", expanded ? "false" : "true");
+}
+function expandCard(card){
+  var content = card.querySelector(".card-content");
+  if(!content) return;
+  // Set to the full height
+  content.style.height = content.scrollHeight + "px";
+  card.classList.add("open");
+  setAria(card.querySelector(".card-header"), true);
+  // After transition, set to auto to accommodate dynamic content
+  var onEnd = function(e){
+    if(e.propertyName === "height"){
+      content.style.height = "auto";
+      content.removeEventListener("transitionend", onEnd);
+    }
+  };
+  content.addEventListener("transitionend", onEnd);
+}
+function collapseCard(card){
+  var content = card.querySelector(".card-content");
+  if(!content) return;
+  // If height is auto, set it to current pixel height first
+  if(getComputedStyle(content).height === "auto"){
+    content.style.height = content.scrollHeight + "px";
+  }
+  // Next frame, animate to 0
+  requestAnimationFrame(function(){
+    requestAnimationFrame(function(){
+      content.style.height = "0px";
+      card.classList.remove("open");
+      setAria(card.querySelector(".card-header"), false);
+    });
+  });
+}
+function toggleCard(card){
+  if(card.classList.contains("open")){
+    collapseCard(card);
+  }else{
+    // If you prefer accordion behavior (close others), uncomment the line below:
+    // document.querySelectorAll(".card.open").forEach(c => collapseCard(c));
+    expandCard(card);
+  }
+}
+document.querySelectorAll(".card-header").forEach(function(header){
+  header.addEventListener("click", function(){
+    toggleCard(header.closest(".card"));
+  });
+  header.addEventListener("keydown", function(e){
+    if(e.key === "Enter" || e.key === " "){
+      e.preventDefault();
+      toggleCard(header.closest(".card"));
+    }
+  });
+});
+</script>
+
+</body>
+</html>
