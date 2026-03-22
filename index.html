@@ -1,642 +1,1038 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Roger John | DevOps Portfolio</title>
+<title>Roger John | DevOps &amp; SRE Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:Arial, Helvetica, sans-serif;
-  scroll-behavior:smooth;
-}
-body{
-  background:#0f172a;
-  color:white;
-  line-height:1.6;
+/* ── RESET & BASE ───────────────────────────────── */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+
+:root {
+  --bg:       #080f1e;
+  --bg2:      #0d1829;
+  --bg3:      #121f35;
+  --bg4:      #1a2d47;
+  --border:   #1e3a5f;
+  --sky:      #38bdf8;
+  --sky-dim:  rgba(56,189,248,0.10);
+  --sky-pale: #7dd3fc;
+  --text:     #f0f4f8;
+  --muted:    #8da4bc;
+  --dimmer:   #536a82;
+  --faint:    #2d4560;
+  --font:     'Plus Jakarta Sans', sans-serif;
+  --mono:     'DM Mono', monospace;
 }
 
-/* NAVBAR */
-nav{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:20px 10%;
-  background:#020617;
-  position:sticky;
-  top:0;
-  z-index:1000;
-}
-nav h3{ color:#38bdf8; }
-nav a{
-  color:white;
-  margin-left:20px;
-  text-decoration:none;
-  transition:0.3s;
-}
-nav a:hover{ color:#38bdf8; }
-
-/* HERO */
-.hero{
-  height:90vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  padding:20px;
-}
-.hero h1{
-  font-size:52px;
-  margin-bottom:10px;
-  animation:fadeIn 2s ease;
-}
-.hero p{ font-size:22px; color:#94a3b8; }
-
-/* SECTIONS */
-section{ padding:80px 10%; }
-h2{ margin-bottom:20px; color:#38bdf8; }
-
-/* SKILLS */
-.skills{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
-  gap:15px;
-}
-.skill{
-  background:#1e293b;
-  padding:15px;
-  border-radius:8px;
-  text-align:center;
-  transition:0.3s;
-}
-.skill:hover{
-  background:#334155;
-  transform:translateY(-5px);
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* DEVOPS FOCUS */
-.devops ul{ list-style:none; }
-.devops li{
-  background:#1e293b;
-  padding:12px;
-  margin:8px 0;
-  border-radius:6px;
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--faint); border-radius: 3px; }
+
+/* ── NAV ────────────────────────────────────────── */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 8%;
+  height: 64px;
+  background: rgba(8,15,30,0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(56,189,248,0.07);
+}
+.nav-logo {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.2px;
+}
+.nav-logo span { color: var(--sky); }
+.nav-links { display: flex; gap: 2px; }
+.nav-links a {
+  color: var(--muted);
+  padding: 6px 14px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.2s, background 0.2s;
+}
+.nav-links a:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+
+/* ── HERO ───────────────────────────────────────── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 80px 8%;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(56,189,248,0.13) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(ellipse 75% 65% at 50% 50%, black, transparent);
+  -webkit-mask-image: radial-gradient(ellipse 75% 65% at 50% 50%, black, transparent);
+  pointer-events: none;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  width: 700px; height: 700px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(56,189,248,0.055) 0%, transparent 70%);
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
 }
 
-/* PROJECTS */
-.projects{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-  gap:20px;
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--sky);
+  background: rgba(56,189,248,0.08);
+  border: 1px solid rgba(56,189,248,0.18);
+  padding: 7px 18px;
+  border-radius: 20px;
+  margin-bottom: 32px;
+  animation: fadeUp 0.7s ease both;
 }
-.card{
-  background:#1e293b;
-  border-radius:10px;
-  transition:transform 0.25s ease;
-  overflow:hidden; /* keep rounded corners on animated content */
-  border:1px solid #0b1222;
-}
-.card:hover{ transform:scale(1.03); }
-
-/* Expandable header */
-.card-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:20px;
-  cursor:pointer;
-  outline:none;
-}
-.card-title{
-  font-size:18px;
-  font-weight:700;
-}
-.card-subtitle{
-  color:#94a3b8;
-  font-size:14px;
-  margin-top:4px;
-}
-.card-summary{
-  color:#cbd5e1;
-  font-size:14px;
-  margin-top:10px;
+.hero-badge::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--sky);
+  animation: blink 2.2s infinite;
 }
 
-/* Toggle icon */
-.toggle-icon{
-  margin-left:16px;
-  color:#94a3b8;
-  transition:transform 0.25s ease;
-  user-select:none;
-  font-size:18px;
-}
-.card.open .toggle-icon{ transform:rotate(180deg); }
-
-/* Expandable content */
-.card-content{
-  height:0;
-  overflow:hidden;
-  transition:height 0.3s ease;
-  background:#162031; /* slightly darker for contrast */
-  border-top:1px solid #0b1222;
-}
-.card-inner{
-  padding:18px 20px 22px 20px;
+.hero-name {
+  font-size: clamp(42px, 6vw, 68px);
+  font-weight: 700;
+  letter-spacing: -1.5px;
+  line-height: 1.08;
+  color: var(--text);
+  margin-bottom: 6px;
+  animation: fadeUp 0.7s 0.08s ease both;
 }
 
-/* Bullets inside details */
-.ul-clean{
-  margin-top:8px;
-  padding-left:18px;
-}
-.ul-clean li{ margin:6px 0; }
-
-/* Link button */
-.link-btn{
-  display:inline-block;
-  margin-top:12px;
-  padding:10px 14px;
-  background:#0ea5e9;
-  color:#0b1222;
-  font-weight:700;
-  text-decoration:none;
-  border-radius:8px;
-  transition:filter 0.2s ease, transform 0.1s ease;
-}
-.link-btn:hover{ filter:brightness(1.1); }
-.link-btn:active{ transform:translateY(1px); }
-
-/* TIMELINE */
-.timeline{
-  border-left:2px solid #38bdf8;
-  padding-left:20px;
-}
-.timeline div{ margin-bottom:20px; }
-
-/* CONTACT */
-.contact a{
-  display:block;
-  margin:10px 0;
-  color:#38bdf8;
-  text-decoration:none;
-}
-.contact a:hover{ text-decoration:underline; }
-
-/* FOOTER */
-footer{
-  text-align:center;
-  padding:20px;
-  background:#020617;
-  margin-top:40px;
+.hero-role {
+  font-size: clamp(20px, 3vw, 30px);
+  font-weight: 500;
+  letter-spacing: -0.5px;
+  color: var(--sky);
+  margin-bottom: 22px;
+  animation: fadeUp 0.7s 0.14s ease both;
 }
 
-/* ANIMATIONS */
-@keyframes fadeIn{
-  0%{opacity:0; transform:translateY(20px);}
-  100%{opacity:1; transform:translateY(0);}
+.hero-sub {
+  font-size: 16px;
+  color: var(--muted);
+  max-width: 520px;
+  line-height: 1.75;
+  margin-bottom: 40px;
+  font-weight: 400;
+  animation: fadeUp 0.7s 0.2s ease both;
 }
-.reveal{
-  opacity:0;
-  transform:translateY(40px);
-  transition:1s;
+
+.hero-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+  animation: fadeUp 0.7s 0.26s ease both;
 }
-.reveal.active{
-  opacity:1;
-  transform:translateY(0);
+.btn-primary {
+  padding: 12px 28px;
+  background: var(--sky);
+  color: #06101e;
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-family: var(--font);
+  transition: filter 0.2s, transform 0.15s;
+  letter-spacing: -0.1px;
+}
+.btn-primary:hover { filter: brightness(1.08); transform: translateY(-2px); }
+.btn-secondary {
+  padding: 12px 28px;
+  background: transparent;
+  color: var(--text);
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: 8px;
+  text-decoration: none;
+  border: 1px solid var(--border);
+  font-family: var(--font);
+  transition: border-color 0.2s, background 0.2s, transform 0.15s;
+  letter-spacing: -0.1px;
+}
+.btn-secondary:hover { border-color: var(--sky); background: var(--sky-dim); transform: translateY(-2px); }
+
+.hero-stats {
+  display: flex;
+  gap: 56px;
+  margin-top: 72px;
+  animation: fadeUp 0.7s 0.32s ease both;
+}
+.stat-num {
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--sky);
+  letter-spacing: -1px;
+  line-height: 1;
+}
+.stat-label {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 5px;
+  font-weight: 500;
+}
+.stat-divider {
+  width: 1px;
+  background: var(--border);
+  align-self: stretch;
+}
+
+/* ── SECTIONS ───────────────────────────────────── */
+section { padding: 88px 8%; }
+
+.section-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--sky);
+  margin-bottom: 10px;
+}
+.section-title {
+  font-size: clamp(24px, 3.5vw, 32px);
+  font-weight: 700;
+  letter-spacing: -0.8px;
+  margin-bottom: 40px;
+  color: var(--text);
+  line-height: 1.2;
+}
+
+/* ── ABOUT ──────────────────────────────────────── */
+.about-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.about-intro-block {
+  grid-column: 1 / -1;
+  font-size: 15.5px;
+  color: #adc4db;
+  border-left: 3px solid var(--sky);
+  padding: 6px 0 6px 20px;
+  line-height: 1.85;
+  margin-bottom: 6px;
+}
+.about-intro-block strong { color: var(--text); font-weight: 600; }
+
+.acard {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px 22px;
+  transition: border-color 0.2s;
+}
+.acard:hover { border-color: rgba(56,189,248,0.35); }
+.acard-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.6px;
+  color: var(--sky);
+  margin-bottom: 10px;
+}
+.acard p {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.75;
+}
+.acard strong { color: #c8dcea; font-weight: 600; }
+
+.interest-bar {
+  grid-column: 1 / -1;
+  margin-top: 6px;
+  background: rgba(56,189,248,0.04);
+  border: 1px solid rgba(56,189,248,0.13);
+  border-radius: 10px;
+  padding: 20px 24px;
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+}
+.interest-icon { font-size: 26px; flex-shrink: 0; margin-top: 1px; }
+.interest-bar h4 { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+.interest-bar p { font-size: 13.5px; color: var(--muted); line-height: 1.7; }
+
+/* ── SKILLS ─────────────────────────────────────── */
+.skills-layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+}
+.skill-group {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px 22px;
+  transition: border-color 0.2s;
+}
+.skill-group:hover { border-color: rgba(56,189,248,0.3); }
+.skill-group-title {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.6px;
+  color: var(--sky);
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+.skill-pills { display: flex; flex-wrap: wrap; gap: 7px; }
+.pill {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 5px 11px;
+  border-radius: 6px;
+  background: var(--bg2);
+  color: var(--muted);
+  border: 1px solid var(--faint);
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+.pill:hover { color: var(--sky); border-color: rgba(56,189,248,0.35); background: var(--sky-dim); }
+
+/* ── PROJECTS ───────────────────────────────────── */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 22px;
+}
+.proj-card {
+  position: relative;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 26px 24px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+}
+.proj-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(56,189,248,0.055) 0%, transparent 55%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+.proj-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--sky);
+  box-shadow: 0 8px 40px rgba(56,189,248,0.10);
+}
+.proj-card:hover::before { opacity: 1; }
+.proj-meta { display: flex; align-items: center; justify-content: space-between; }
+.proj-num {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  color: var(--faint);
+}
+.proj-tag {
+  font-size: 11px;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: 20px;
+  background: var(--sky-dim);
+  color: var(--sky);
+  border: 1px solid rgba(56,189,248,0.18);
+}
+.proj-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.3;
+  letter-spacing: -0.2px;
+}
+.proj-sub {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  color: var(--dimmer);
+  letter-spacing: 0.2px;
+}
+.proj-desc {
+  font-size: 13.5px;
+  color: var(--muted);
+  line-height: 1.78;
+  flex: 1;
+}
+.proj-stack { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+.proj-stack span {
+  font-family: var(--mono);
+  font-size: 11px;
+  padding: 3px 9px;
+  border-radius: 4px;
+  background: var(--bg2);
+  color: var(--dimmer);
+  border: 1px solid var(--faint);
+}
+.proj-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+  margin-top: 4px;
+}
+.proj-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--sky);
+  text-decoration: none;
+  transition: gap 0.2s, color 0.2s;
+}
+.proj-link:hover { color: var(--sky-pale); gap: 10px; }
+.proj-link svg { width:13px; height:13px; flex-shrink:0; transition: transform 0.2s; }
+.proj-link:hover svg { transform: translate(2px,-2px); }
+.proj-arrow {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: var(--faint);
+  text-decoration: none;
+  transition: background 0.25s, border-color 0.25s, color 0.25s;
+}
+.proj-card:hover .proj-arrow { background: var(--sky); border-color: var(--sky); color: #06101e; }
+.proj-no-link { font-size: 13px; color: var(--faint); font-style: italic; }
+
+/* ── JOURNEY ────────────────────────────────────── */
+.timeline { position: relative; padding-left: 30px; }
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 5px; top: 8px; bottom: 8px;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--sky) 0%, rgba(56,189,248,0.1) 100%);
+  border-radius: 2px;
+}
+.tl-item { position: relative; margin-bottom: 38px; }
+.tl-item:last-child { margin-bottom: 0; }
+.tl-dot {
+  position: absolute;
+  left: -27px; top: 7px;
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: var(--bg2);
+  border: 2px solid var(--border);
+  transition: border-color 0.3s;
+}
+.tl-item.active .tl-dot {
+  border-color: var(--sky);
+  background: var(--sky);
+  box-shadow: 0 0 12px rgba(56,189,248,0.45);
+}
+.tl-period {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--sky);
+  margin-bottom: 5px;
+  letter-spacing: 0.5px;
+}
+.tl-role {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 2px;
+  letter-spacing: -0.2px;
+}
+.tl-place {
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+.tl-desc {
+  font-size: 13.5px;
+  color: var(--dimmer);
+  line-height: 1.72;
+  max-width: 620px;
+}
+
+/* ── CONTACT ─────────────────────────────────────── */
+.contact-wrap {
+  max-width: 660px;
+}
+.contact-wrap > p {
+  font-size: 15px;
+  color: var(--muted);
+  margin-bottom: 32px;
+  line-height: 1.75;
+}
+.contact-links {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+.contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 22px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  background: var(--bg3);
+  font-family: var(--font);
+  transition: border-color 0.2s, color 0.2s, background 0.2s, transform 0.15s;
+}
+.contact-link:hover {
+  color: var(--sky);
+  border-color: rgba(56,189,248,0.38);
+  background: var(--sky-dim);
+  transform: translateY(-2px);
+}
+.contact-link svg { width:15px; height:15px; flex-shrink:0; }
+.contact-phone {
+  font-size: 13px;
+  color: var(--faint);
+  font-weight: 500;
+}
+
+/* ── FOOTER ──────────────────────────────────────── */
+footer {
+  text-align: center;
+  padding: 26px;
+  background: #040b16;
+  border-top: 1px solid rgba(255,255,255,0.04);
+  font-size: 13px;
+  color: var(--faint);
+}
+
+/* ── REVEAL ──────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal.active { opacity: 1; transform: translateY(0); }
+
+/* ── KEYFRAMES ───────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(20px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+@keyframes blink {
+  0%,100% { opacity:1; }
+  50%      { opacity:0.25; }
+}
+
+/* ── RESPONSIVE ──────────────────────────────────── */
+@media (max-width: 768px) {
+  nav { padding: 0 5%; }
+  .nav-links { display: none; }
+  section { padding: 70px 5%; }
+  .hero { padding: 60px 5%; }
+  .about-layout { grid-template-columns: 1fr; }
+  .about-intro-block, .interest-bar { grid-column: 1; }
+  .hero-stats { gap: 30px; }
+}
+@media (max-width: 480px) {
+  .hero-stats { flex-direction: column; align-items: center; gap: 20px; }
+  .stat-divider { display: none; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .skills-layout { grid-template-columns: 1fr; }
 }
 </style>
-
 </head>
-
 <body>
 
+<!-- ── NAV ──────────────────────────────────────── -->
 <nav>
-  <h3>Roger John</h3>
-  <div>
+  <div class="nav-logo">Roger <span>John</span></div>
+  <div class="nav-links">
     <a href="#about">About</a>
-    <a href="#interests">Interests</a>
     <a href="#skills">Skills</a>
-    <a href="#devops">DevOps</a>
     <a href="#projects">Projects</a>
-    <a href="#timeline">Journey</a>
+    <a href="#journey">Journey</a>
     <a href="#contact">Contact</a>
   </div>
 </nav>
 
-<!-- HERO -->
+<!-- ── HERO ─────────────────────────────────────── -->
 <div class="hero">
-  <h1>Roger John</h1>
-  <p>Aspiring DevOps Engineer | Site Reliability Engineering | Cloud Operations</p>
+  <div class="hero-badge">Available for new opportunities</div>
+  <div class="hero-name">Roger John</div>
+  <div class="hero-role">DevOps &amp; Site Reliability Engineer</div>
+  <p class="hero-sub">
+    3.7+ years building reliable cloud infrastructure, owning production incidents
+    end-to-end, and automating everything that should not be done by hand.
+  </p>
+  <div class="hero-actions">
+    <a href="#projects" class="btn-primary">View Projects</a>
+    <a href="#contact" class="btn-secondary">Get in Touch</a>
+  </div>
+  <div class="hero-stats">
+    <div>
+      <div class="stat-num">3.7+</div>
+      <div class="stat-label">Years Experience</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div>
+      <div class="stat-num">5</div>
+      <div class="stat-label">Projects Built</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div>
+      <div class="stat-num">10+</div>
+      <div class="stat-label">Tools &amp; Platforms</div>
+    </div>
+  </div>
 </div>
 
-<!-- ABOUT -->
+<!-- ── ABOUT ─────────────────────────────────────── -->
 <section id="about" class="reveal">
-  <h2>About Me</h2>
-  <p>
-    Aspiring DevOps Engineer with 3.5+ years of experience in Site Reliability
-    Engineering, Production Support and Cloud Operations.
-    <br><br>
-    Hands-on experience managing AWS infrastructure, monitoring enterprise
-    applications, troubleshooting production incidents and supporting CI/CD
-    deployments.
-    <br><br>
-    Experienced with observability platforms including Prometheus, Grafana,
-    Dynatrace, Datadog, Kibana and New Relic. Passionate about automation,
-    infrastructure reliability and building scalable cloud systems using
-    modern DevOps practices.
-  </p>
+  <div class="section-label">Who I am</div>
+  <div class="section-title">About Me</div>
+
+  <div class="about-layout">
+    <div class="about-intro-block">
+      DevOps &amp; Site Reliability Engineer with <strong>3.7+ years</strong> of hands-on experience
+      across production support, cloud operations, and infrastructure reliability —
+      currently at <strong>Wolters Kluwer, Chennai</strong>, and previously at
+      <strong>Tata Consultancy Services, Bangalore</strong>.
+    </div>
+
+    <div class="acard">
+      <div class="acard-label">Infrastructure &amp; Reliability</div>
+      <p>Specializing in AWS-hosted enterprise applications — managing <strong>EC2</strong> environments
+      with Auto Scaling and Load Balancers, owning the full incident lifecycle from alert triage and RCA
+      through post-incident reviews, and ensuring deployments land cleanly with pre/post health checks.</p>
+    </div>
+
+    <div class="acard">
+      <div class="acard-label">Observability</div>
+      <p>Daily use of <strong>Prometheus, Grafana, Dynatrace, Datadog, New Relic, Zabbix,
+      AWS CloudWatch,</strong> and <strong>Kibana (ELK)</strong> to monitor infrastructure health,
+      analyze logs, and surface performance issues before they reach users.</p>
+    </div>
+
+    <div class="acard">
+      <div class="acard-label">CI/CD &amp; Cloud Operations</div>
+      <p>Supported <strong>DEV → UAT → PROD</strong> release pipelines across AWS and Azure,
+      automated operational checks with <strong>Python scripts</strong>, and contributed
+      to data pipeline reliability for large-scale platforms at TCS.</p>
+    </div>
+
+    <div class="acard">
+      <div class="acard-label">Mindset</div>
+      <p>Committed to continuous learning in <strong>DevOps and cloud engineering</strong> —
+      with a long-term goal of contributing to highly reliable,
+      <strong>scalable systems</strong> and the teams that build them.</p>
+    </div>
+
+    <div class="interest-bar">
+      <div class="interest-icon">🔭</div>
+      <div>
+        <h4>Beyond the Terminal — Passionate About Space &amp; Astronomy</h4>
+        <p>Outside work I run informal stargazing sessions for colleagues and neighborhood kids —
+        covering constellations, galaxies, satellites, and space missions. This curiosity for large-scale
+        systems (cosmic and cloud alike) drives my ISS ETL pipeline project and keeps me thinking in terms
+        of scale, patterns, and reliability.</p>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- PERSONAL INTERESTS -->
-<section id="interests" class="reveal">
-  <h2>Personal Interests</h2>
-  <h3 style="margin-bottom:10px;color:#e2e8f0;">Passionate About Space &amp; Astronomy</h3>
-  <p style="color:#cbd5e1;">
-    Outside of my professional work, I am deeply passionate about space science, astronomy,
-    and stargazing. I frequently share this interest by conducting informal sessions for my
-    colleagues and children in my neighborhood.
-  </p>
-  <p style="margin-top:12px;">I enjoy teaching and creating awareness about topics such as:</p>
-  <ul class="ul-clean">
-    <li>The structure of the universe</li>
-    <li>Constellations and their history</li>
-    <li>Galaxies, nebulae, and deep‑sky objects</li>
-    <li>Satellites and space missions</li>
-    <li>How to read the night sky with the naked eye and basic equipment</li>
-  </ul>
-  <p style="margin-top:12px;color:#cbd5e1;">
-    I love helping others discover the beauty of the cosmos, and this interest
-    continues to inspire many of my personal projects.
-  </p>
-</section>
-
-<!-- SKILLS -->
+<!-- ── SKILLS ────────────────────────────────────── -->
 <section id="skills" class="reveal">
-  <h2>Technical Skills</h2>
-  <div class="skills">
-    <div class="skill">AWS</div>
-    <div class="skill">Docker</div>
-    <div class="skill">Linux</div>
-    <div class="skill">Jenkins</div>
-    <div class="skill">Git</div>
-    <div class="skill">GitHub</div>
-    <div class="skill">Bitbucket</div>
-    <div class="skill">CI/CD</div>
-    <div class="skill">Prometheus</div>
-    <div class="skill">Grafana</div>
-    <div class="skill">Dynatrace</div>
-    <div class="skill">Datadog</div>
-    <div class="skill">New Relic</div>
-    <div class="skill">Kibana</div>
-    <div class="skill">Zabbix</div>
-    <div class="skill">Python</div>
-    <div class="skill">Bash</div>
+  <div class="section-label">What I work with</div>
+  <div class="section-title">Technical Skills</div>
 
+  <div class="skills-layout">
+    <div class="skill-group">
+      <div class="skill-group-title">Cloud &amp; Infrastructure</div>
+      <div class="skill-pills">
+        <span class="pill">AWS EC2</span>
+        <span class="pill">Auto Scaling</span>
+        <span class="pill">ALB</span>
+        <span class="pill">IAM</span>
+        <span class="pill">S3</span>
+        <span class="pill">Route 53</span>
+        <span class="pill">CloudWatch</span>
+        <span class="pill">Azure</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <div class="skill-group-title">Monitoring &amp; Observability</div>
+      <div class="skill-pills">
+        <span class="pill">Prometheus</span>
+        <span class="pill">Grafana</span>
+        <span class="pill">Dynatrace</span>
+        <span class="pill">Datadog</span>
+        <span class="pill">New Relic</span>
+        <span class="pill">Zabbix</span>
+        <span class="pill">Kibana (ELK)</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <div class="skill-group-title">CI/CD &amp; Containers</div>
+      <div class="skill-pills">
+        <span class="pill">Jenkins</span>
+        <span class="pill">Docker</span>
+        <span class="pill">AWS ECR</span>
+        <span class="pill">Git</span>
+        <span class="pill">GitHub</span>
+        <span class="pill">Bitbucket</span>
+        <span class="pill">CI/CD Pipelines</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <div class="skill-group-title">Scripting &amp; Tools</div>
+      <div class="skill-pills">
+        <span class="pill">Python</span>
+        <span class="pill">Bash</span>
+        <span class="pill">Linux</span>
+        <span class="pill">Apache Airflow</span>
+        <span class="pill">REST APIs</span>
+        <span class="pill">Postman</span>
+        <span class="pill">PuTTY / WinSCP</span>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- DEVOPS FOCUS -->
-<section id="devops" class="reveal">
-  <h2>DevOps Focus</h2>
-  <div class="devops">
-    <ul>
-      <li>Infrastructure Automation</li>
-      <li>CI/CD Pipeline Implementation</li>
-      <li>Docker Containerization</li>
-      <li>AWS Infrastructure Architecture</li>
-      <li>Monitoring &amp; Observability Systems</li>
-      <li>Automation using Python and Bash</li>
-    </ul>
-  </div>
-</section>
-
-<!-- PROJECTS -->
+<!-- ── PROJECTS ──────────────────────────────────── -->
 <section id="projects" class="reveal">
-  <h2>Projects</h2>
+  <div class="section-label">What I've built</div>
+  <div class="section-title">Projects</div>
 
-  <div class="projects">
+  <div class="projects-grid">
 
-    <!-- AWS High Availability Architecture -->
-    <div class="card" data-project="aws-ha">
-      <div class="card-header" role="button" tabindex="0" aria-expanded="false">
-        <div>
-          <div class="card-title">AWS High Availability Architecture</div>
-          <div class="card-subtitle">Scalable and fault‑tolerant IaaS on AWS</div>
-          <p class="card-summary">
-            Designed and implemented a production‑ready AWS foundation with ALB, Auto Scaling,
-            Route 53, secure networking, and managed back‑end services.
-          </p>
-        </div>
-        <span class="toggle-icon">⌄</span>
+    <!-- 01 -->
+    <div class="proj-card">
+      <div class="proj-meta">
+        <span class="proj-num">01</span>
+        <span class="proj-tag">AWS · Infrastructure</span>
       </div>
-      <div class="card-content" aria-hidden="true">
-        <div class="card-inner">
-          <p>
-            I designed and implemented a scalable, highly available AWS IaaS architecture following
-            industry best practices.
-          </p>
-          <p><strong>Architecture Components</strong></p>
-          <ul class="ul-clean">
-            <li>Application Load Balancer (ALB) routing to an Auto Scaling group of Tomcat EC2 instances</li>
-            <li>Amazon S3 for artifact storage</li>
-            <li>Amazon Route 53 (public &amp; private hosted zones) for DNS</li>
-            <li>Security Groups and least‑privilege access controls</li>
-            <li>Back‑end services: MySQL, RabbitMQ, and Memcached</li>
-          </ul>
-          <p style="margin-top:10px;">
-            This project strengthened my understanding of cloud architecture, scalability,
-            high availability, and deployment workflows on AWS.
-          </p>
-          <a class="link-btn" href="https://www.linkedin.com/posts/rogerjohn_building-scalable-aws-infrastructure-iaas-activity-7426513862730113024-M_8V?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAFCdIkwBOfARuO1lfT0M11YsJXAliFhXK50" target="_blank" rel="noopener noreferrer">
-            🔗 View LinkedIn Project Post
-          </a>
-        </div>
+      <div class="proj-title">AWS High Availability Architecture</div>
+      <div class="proj-sub">ALB → Auto Scaling → EC2 → Route 53</div>
+      <p class="proj-desc">
+        Designed and implemented a production-ready, fault-tolerant AWS IaaS setup — Application Load
+        Balancer routing to an Auto Scaling group of Tomcat EC2 instances, S3 for artifact storage,
+        Route 53 for DNS, and managed back-end services including MySQL, RabbitMQ, and Memcached.
+      </p>
+      <div class="proj-stack">
+        <span>AWS EC2</span><span>ALB</span><span>Auto Scaling</span>
+        <span>S3</span><span>Route 53</span><span>RabbitMQ</span><span>Memcached</span>
+      </div>
+      <div class="proj-footer">
+        <a class="proj-link"
+           href="https://www.linkedin.com/posts/rogerjohn_building-scalable-aws-infrastructure-iaas-activity-7426513862730113024-M_8V"
+           target="_blank" rel="noopener noreferrer">
+          View on LinkedIn
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+            <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+        </a>
+        <a class="proj-arrow"
+           href="https://www.linkedin.com/posts/rogerjohn_building-scalable-aws-infrastructure-iaas-activity-7426513862730113024-M_8V"
+           target="_blank" rel="noopener noreferrer">↗</a>
       </div>
     </div>
 
-    <!-- Infrastructure Monitoring System -->
-    <div class="card" data-project="monitoring">
-      <div class="card-header" role="button" tabindex="0" aria-expanded="false">
-        <div>
-          <div class="card-title">Infrastructure Monitoring System</div>
-          <div class="card-subtitle">Prometheus + Node Exporter + Grafana + Slack Alerts</div>
-          <p class="card-summary">
-            Designed a complete observability workflow with metrics collection, dashboards, and alerting.
-          </p>
-        </div>
-        <span class="toggle-icon">⌄</span>
+    <!-- 02 -->
+    <div class="proj-card">
+      <div class="proj-meta">
+        <span class="proj-num">02</span>
+        <span class="proj-tag">Observability · Alerting</span>
       </div>
-      <div class="card-content" aria-hidden="true">
-        <div class="card-inner">
-
-          <p>
-            Excited to share one of my recent hands‑on DevOps projects where I designed and implemented 
-            a complete monitoring and alerting workflow for real‑time infrastructure observability.
-          </p>
-
-          <p><strong>Project Flow</strong></p>
-          <ul class="ul-clean">
-            <li>App Server → <strong>Node Exporter</strong> for system‑level metrics</li>
-            <li><strong>Prometheus</strong> scraping &amp; storing time‑series performance data</li>
-            <li><strong>Grafana</strong> for live dashboards and visualization</li>
-            <li><strong>Slack</strong> for instant proactive alert notifications</li>
-          </ul>
-
-          <p><strong>Key Highlights</strong></p>
-          <ul class="ul-clean">
-            <li>Configured Prometheus scrape jobs and monitoring targets</li>
-            <li>Built Grafana dashboards for CPU, memory, disk I/O, network &amp; system metrics</li>
-            <li>Created Grafana alert rules and integrated Slack webhook for rapid incident response</li>
-            <li>Enabled real‑time visibility into infrastructure health and inbound traffic patterns</li>
-          </ul>
-
-          <a class="link-btn" href="https://www.linkedin.com/posts/rogerjohn_devops-sre-prometheus-activity-7425992697871740928-1w1r?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAFCdIkwBOfARuO1lfT0M11YsJXAliFhXK50" target="_blank" rel="noopener noreferrer">
-            🔗 View LinkedIn Project Post
-          </a>
-
-        </div>
+      <div class="proj-title">Infrastructure Monitoring System</div>
+      <div class="proj-sub">Prometheus → Grafana → Slack Alerts</div>
+      <p class="proj-desc">
+        Built a complete observability stack — Node Exporter collecting system metrics,
+        Prometheus scraping and storing time-series data, Grafana dashboards covering CPU, memory,
+        disk I/O and network, with Slack webhook integration for proactive incident alerting.
+      </p>
+      <div class="proj-stack">
+        <span>Prometheus</span><span>Grafana</span><span>Node Exporter</span><span>Slack Webhooks</span>
+      </div>
+      <div class="proj-footer">
+        <a class="proj-link"
+           href="https://www.linkedin.com/posts/rogerjohn_devops-sre-prometheus-activity-7425992697871740928-1w1r"
+           target="_blank" rel="noopener noreferrer">
+          View on LinkedIn
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+            <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+        </a>
+        <a class="proj-arrow"
+           href="https://www.linkedin.com/posts/rogerjohn_devops-sre-prometheus-activity-7425992697871740928-1w1r"
+           target="_blank" rel="noopener noreferrer">↗</a>
       </div>
     </div>
 
-    <!-- Automated Jenkins CI Pipeline -->
-    <div class="card" data-project="jenkins-ci">
-      <div class="card-header" role="button" tabindex="0" aria-expanded="false">
-        <div>
-          <div class="card-title">Automated Jenkins CI Pipeline</div>
-          <div class="card-subtitle">GitHub Webhooks → Jenkins → Docker → AWS ECR</div>
-          <p class="card-summary">
-            Event‑driven CI that builds and publishes versioned Docker images to ECR
-            on every push.
-          </p>
-        </div>
-        <span class="toggle-icon">⌄</span>
+    <!-- 03 -->
+    <div class="proj-card">
+      <div class="proj-meta">
+        <span class="proj-num">03</span>
+        <span class="proj-tag">CI/CD · Containers</span>
       </div>
-      <div class="card-content" aria-hidden="true">
-        <div class="card-inner">
-          <p><strong>Building an Automated CI Pipeline with GitHub Webhooks, Jenkins &amp; AWS ECR</strong></p>
-          <p>
-            I designed and implemented an automated CI pipeline to build and manage Docker images
-            using Jenkins and AWS. With every Git push, the pipeline triggers automatically—delivering
-            continuous integration without manual intervention.
-          </p>
-          <p><strong>Project Flow</strong></p>
-          <ul class="ul-clean">
-            <li>GitHub (Webhook Trigger) &rarr; Jenkins Pipeline (Pipeline as Code)</li>
-            <li>Docker Image Build &rarr; Amazon ECR (Versioned Image Repository)</li>
-          </ul>
-          <p><strong>Key Highlights</strong></p>
-          <ul class="ul-clean">
-            <li>Configured GitHub Webhook to trigger Jenkins on every code push</li>
-            <li>Implemented a Jenkins Pipeline to automate Docker image builds</li>
-            <li>Integrated secure AWS credentials within Jenkins</li>
-            <li>Used dynamic image tagging via the <code>BUILD_NUMBER</code> strategy</li>
-            <li>Pushed versioned Docker images to Amazon ECR</li>
-            <li>Followed clean Docker practices using <code>nginx:alpine</code> and <code>.dockerignore</code></li>
-          </ul>
-          <p style="margin-top:10px;">
-            This project deepened my understanding of event‑driven CI workflows, container image
-            lifecycle management, and secure Jenkins–AWS integration. Coming from an SRE / Production
-            Support background focused on observability and AWS operations, building this automation
-            pipeline strengthens my end‑to‑end DevOps capability—from monitoring systems to automating
-            build workflows.
-          </p>
-
-          <a class="link-btn" href="https://www.linkedin.com/posts/rogerjohn_devops-cicd-project-aws-activity-7431496461344788480-cxGj?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAFCdIkwBOfARuO1lfT0M11YsJXAliFhXK50" target="_blank" rel="noopener noreferrer">
-            🔗 View LinkedIn Project Post
-          </a>
-
-        </div>
+      <div class="proj-title">Automated Jenkins CI Pipeline</div>
+      <div class="proj-sub">GitHub Webhook → Jenkins → Docker → AWS ECR</div>
+      <p class="proj-desc">
+        Event-driven CI pipeline triggered on every Git push — Jenkins builds versioned Docker
+        images using dynamic <code style="font-family:var(--mono);background:#080f1e;padding:1px 5px;border-radius:3px;font-size:11.5px;color:var(--sky-pale);">BUILD_NUMBER</code> tagging
+        and pushes to Amazon ECR, with secure AWS credential integration and clean Docker practices.
+      </p>
+      <div class="proj-stack">
+        <span>Jenkins</span><span>Docker</span><span>AWS ECR</span><span>GitHub</span><span>Webhooks</span>
+      </div>
+      <div class="proj-footer">
+        <a class="proj-link"
+           href="https://www.linkedin.com/posts/rogerjohn_devops-cicd-project-aws-activity-7431496461344788480-cxGj"
+           target="_blank" rel="noopener noreferrer">
+          View on LinkedIn
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+            <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+        </a>
+        <a class="proj-arrow"
+           href="https://www.linkedin.com/posts/rogerjohn_devops-cicd-project-aws-activity-7431496461344788480-cxGj"
+           target="_blank" rel="noopener noreferrer">↗</a>
       </div>
     </div>
 
-    <!-- Python Monitoring Tool -->
-    <div class="card" data-project="python-tool">
-      <div class="card-header" role="button" tabindex="0" aria-expanded="false">
-        <div>
-          <div class="card-title">Python Monitoring Tool</div>
-          <div class="card-subtitle">Informatica IICS Secure Agent status</div>
-          <p class="card-summary">
-            Desktop utility using IICS REST APIs to reduce manual monitoring and speed up triage.
-          </p>
-        </div>
-        <span class="toggle-icon">⌄</span>
+    <!-- 04 -->
+    <div class="proj-card">
+      <div class="proj-meta">
+        <span class="proj-num">04</span>
+        <span class="proj-tag">Python · Automation</span>
       </div>
-      <div class="card-content" aria-hidden="true">
-        <div class="card-inner">
-          <p><strong>Highlights</strong></p>
-          <ul class="ul-clean">
-            <li>Polled IICS REST APIs for Secure Agent health and recent activity</li>
-            <li>Near real‑time status surface with simple desktop UI</li>
-            <li>Reduced manual checks and improved response time</li>
-          </ul>
-        </div>
+      <div class="proj-title">Python Monitoring Tool</div>
+      <div class="proj-sub">Informatica IICS Secure Agent Status</div>
+      <p class="proj-desc">
+        Desktop utility that polls Informatica IICS REST APIs to surface Secure Agent health and
+        recent activity in near real-time — replacing manual checks with an automated status
+        dashboard that significantly reduced triage time during production incidents.
+      </p>
+      <div class="proj-stack">
+        <span>Python</span><span>REST API</span><span>Informatica IICS</span><span>Desktop UI</span>
+      </div>
+      <div class="proj-footer">
+        <span class="proj-no-link">Internal tool — not publicly posted</span>
+        <div class="proj-arrow" style="cursor:default;">✦</div>
       </div>
     </div>
 
-    <!-- ISS Data ETL Pipeline -->
-    <div class="card" data-project="iss-etl">
-      <div class="card-header" role="button" tabindex="0" aria-expanded="false">
-        <div>
-          <div class="card-title">Project Highlight – ISS Data ETL Pipeline</div>
-          <div class="card-subtitle">ISS Real‑Time Location Tracker (NASA Open APIs)</div>
-          <p class="card-summary">
-            Automated ETL pipeline that captures, converts, and stores ISS coordinates for
-            historical analysis and visualization.
-          </p>
-        </div>
-        <span class="toggle-icon">⌄</span>
+    <!-- 05 -->
+    <div class="proj-card">
+      <div class="proj-meta">
+        <span class="proj-num">05</span>
+        <span class="proj-tag">ETL · Space · Data</span>
       </div>
-      <div class="card-content" aria-hidden="true">
-        <div class="card-inner">
-          <p>
-            I developed a fully automated ETL pipeline that captures, processes, and stores
-            real‑time positional data of the International Space Station (ISS) using NASA's
-            open API ecosystem.
-          </p>
-          <p><strong>Key Features</strong></p>
-          <ul class="ul-clean">
-            <li><strong>Real‑Time Data Capture:</strong> Fetches the live ISS coordinates every 5 minutes</li>
-            <li><strong>Automated Timestamp Conversion:</strong> Converts UTC timestamps to IST</li>
-            <li><strong>Data Storage for Analytics:</strong> Appends processed data to a CSV for a historical dataset</li>
-            <li><strong>ETL Automation:</strong> Orchestrated end‑to‑end using Apache Airflow</li>
-            <li><strong>Lightweight Execution Layer:</strong> Python transforms with a Bash wrapper</li>
-          </ul>
-          <p style="margin-top:10px;"><strong>Tech Stack:</strong> Apache Airflow | Python | Bash | NASA Open APIs | CSV Storage</p>
-          <p style="margin-top:6px;"><strong>Purpose:</strong> Enables long‑term analysis and visualization of the ISS trajectory—useful for astronomy enthusiasts, data science exploration, and real‑time space observation dashboards.</p>
-
-          <a class="link-btn" href="https://www.linkedin.com/posts/rogerjohn_etl-from-iss-api-activity-7242470327484571649-YrvF?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAFCdIkwBOfARuO1lfT0M11YsJXAliFhXK50" target="_blank" rel="noopener noreferrer">
-            🔗 View LinkedIn Project Post
-          </a>
-
-        </div>
+      <div class="proj-title">ISS Real-Time ETL Pipeline</div>
+      <div class="proj-sub">NASA APIs → Airflow → Python → CSV</div>
+      <p class="proj-desc">
+        Fully automated ETL pipeline fetching live ISS coordinates from NASA's open APIs every
+        5 minutes, converting UTC to IST, and appending records to a growing CSV dataset —
+        orchestrated end-to-end with Apache Airflow for historical trajectory analysis.
+      </p>
+      <div class="proj-stack">
+        <span>Apache Airflow</span><span>Python</span><span>Bash</span><span>NASA APIs</span><span>CSV</span>
+      </div>
+      <div class="proj-footer">
+        <a class="proj-link"
+           href="https://www.linkedin.com/posts/rogerjohn_etl-from-iss-api-activity-7242470327484571649-YrvF"
+           target="_blank" rel="noopener noreferrer">
+          View on LinkedIn
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+            <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+        </a>
+        <a class="proj-arrow"
+           href="https://www.linkedin.com/posts/rogerjohn_etl-from-iss-api-activity-7242470327484571649-YrvF"
+           target="_blank" rel="noopener noreferrer">↗</a>
       </div>
     </div>
 
   </div>
 </section>
 
-<!-- JOURNEY -->
-<section id="timeline" class="reveal">
-  <h2>Career Journey</h2>
+<!-- ── JOURNEY ───────────────────────────────────── -->
+<section id="journey" class="reveal">
+  <div class="section-label">My path here</div>
+  <div class="section-title">Career Journey</div>
+
   <div class="timeline">
-    <div>
-      <strong>Diploma Engineering</strong>
-      <p>2012 - 2015</p>
+
+    <div class="tl-item active">
+      <div class="tl-dot"></div>
+      <div class="tl-period">Nov 2024 — Present</div>
+      <div class="tl-role">Product Support Engineer I &nbsp;·&nbsp; SRE</div>
+      <div class="tl-place">Wolters Kluwer &mdash; Chennai</div>
+      <div class="tl-desc">
+        Supporting AWS-hosted enterprise applications with focus on high availability, incident management,
+        and observability. Owning the full incident lifecycle — from alert triage and RCA to post-incident
+        reviews — across Prometheus, Grafana, Dynatrace, Datadog, New Relic, and Kibana.
+      </div>
     </div>
-    <div>
-      <strong>L&amp;T – Site Engineer</strong>
-      <p>2015 - 2017</p>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-period">Mar 2022 — Mar 2024</div>
+      <div class="tl-role">Assistant System Engineer</div>
+      <div class="tl-place">Tata Consultancy Services (TCS) &mdash; Bangalore</div>
+      <div class="tl-desc">
+        Production support and cloud operations for large-scale data platforms across AWS and Azure.
+        Supported DEV → UAT → PROD deployments, automated monitoring checks with Python,
+        and managed data pipelines using Datadog and REST APIs.
+      </div>
     </div>
-    <div>
-      <strong>Bachelor of Engineering</strong>
-      <p>2017 - 2021</p>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-period">2017 — 2021</div>
+      <div class="tl-role">Bachelor of Engineering</div>
+      <div class="tl-place">Engineering Degree</div>
+      <div class="tl-desc">
+        Built a strong foundation in engineering principles that informs how I approach
+        systems design, reliability, and root cause analysis today.
+      </div>
     </div>
-    <div>
-      <strong>TCS – Assistant System Engineer</strong>
-      <p>2022 - 2024</p>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-period">2015 — 2017</div>
+      <div class="tl-role">Site Engineer</div>
+      <div class="tl-place">L&amp;T</div>
+      <div class="tl-desc">
+        Early career experience in large-scale project execution, developing discipline
+        around process, precision, and working under operational pressure.
+      </div>
     </div>
-    <div>
-      <strong>Wolters Kluwer – Product Support Engineer / SRE</strong>
-      <p>Nov 2024 - Present</p>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-period">2012 — 2015</div>
+      <div class="tl-role">Diploma Engineering</div>
+      <div class="tl-place">Polytechnic</div>
+      <div class="tl-desc">First step into engineering — where the curiosity for how systems work began.</div>
     </div>
+
   </div>
 </section>
 
-<!-- CONTACT -->
+<!-- ── CONTACT ───────────────────────────────────── -->
 <section id="contact" class="reveal">
-  <h2>Contact</h2>
-  <div class="contact">
-    <a href="mailto:rj.rogerjohn@outlook.com">Email: rj.rogerjohn@outlook.com</a>
-    <a href="https://www.linkedin.com/in/rogerjohn/" target="_blank" rel="noopener noreferrer">LinkedIn Profile</a>
-    <a href="https://x.com/rojergohn" target="_blank" rel="noopener noreferrer">X Profile</a>
-    <p>Phone: +91 7708517264</p>
+  <div class="section-label">Say hello</div>
+  <div class="section-title">Get in Touch</div>
+
+  <div class="contact-wrap">
+    <p>
+      Whether you want to discuss a role, collaborate on something interesting,
+      or just talk infrastructure — my inbox is open.
+    </p>
+
+    <div class="contact-links">
+      <a class="contact-link" href="mailto:rj.rogerjohn@outlook.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="4" width="20" height="16" rx="2"/>
+          <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+        </svg>
+        rj.rogerjohn@outlook.com
+      </a>
+
+      <a class="contact-link" href="https://www.linkedin.com/in/rogerjohn/" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+          <rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>
+        </svg>
+        LinkedIn
+      </a>
+
+      <a class="contact-link" href="https://x.com/rojergohn" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+        </svg>
+        X / Twitter
+      </a>
+    </div>
+
+    <div class="contact-phone">📞 &nbsp;+91 7708517264</div>
   </div>
 </section>
 
+<!-- ── FOOTER ─────────────────────────────────────── -->
 <footer>
-  <p>© 2026 Roger John | DevOps Portfolio</p>
+  <p>© 2026 Roger John &nbsp;·&nbsp; Built with care, not a template.</p>
 </footer>
 
 <script>
-/* Reveal on scroll */
 function reveal(){
-  var reveals = document.querySelectorAll(".reveal");
-  for(var i = 0; i < reveals.length; i++){
-    var windowHeight = window.innerHeight;
-    var elementTop = reveals[i].getBoundingClientRect().top;
-    var elementVisible = 150;
-    if(elementTop < windowHeight - elementVisible){
-      reveals[i].classList.add("active");
-    }
-  }
-}
-window.addEventListener("scroll", reveal);
-window.addEventListener("load", reveal);
-
-/* Expand/Collapse cards (smooth height animation) */
-function setAria(header, expanded){
-  header.setAttribute("aria-expanded", expanded ? "true" : "false");
-  var content = header.parentElement.querySelector(".card-content");
-  if(content) content.setAttribute("aria-hidden", expanded ? "false" : "true");
-}
-function expandCard(card){
-  var content = card.querySelector(".card-content");
-  if(!content) return;
-  // Set to the full height
-  content.style.height = content.scrollHeight + "px";
-  card.classList.add("open");
-  setAria(card.querySelector(".card-header"), true);
-  // After transition, set to auto to accommodate dynamic content
-  var onEnd = function(e){
-    if(e.propertyName === "height"){
-      content.style.height = "auto";
-      content.removeEventListener("transitionend", onEnd);
-    }
-  };
-  content.addEventListener("transitionend", onEnd);
-}
-function collapseCard(card){
-  var content = card.querySelector(".card-content");
-  if(!content) return;
-  // If height is auto, set it to current pixel height first
-  if(getComputedStyle(content).height === "auto"){
-    content.style.height = content.scrollHeight + "px";
-  }
-  // Next frame, animate to 0
-  requestAnimationFrame(function(){
-    requestAnimationFrame(function(){
-      content.style.height = "0px";
-      card.classList.remove("open");
-      setAria(card.querySelector(".card-header"), false);
-    });
-  });
-}
-function toggleCard(card){
-  if(card.classList.contains("open")){
-    collapseCard(card);
-  }else{
-    // If you prefer accordion behavior (close others), uncomment the line below:
-    // document.querySelectorAll(".card.open").forEach(c => collapseCard(c));
-    expandCard(card);
-  }
-}
-document.querySelectorAll(".card-header").forEach(function(header){
-  header.addEventListener("click", function(){
-    toggleCard(header.closest(".card"));
-  });
-  header.addEventListener("keydown", function(e){
-    if(e.key === "Enter" || e.key === " "){
-      e.preventDefault();
-      toggleCard(header.closest(".card"));
+  document.querySelectorAll('.reveal').forEach(function(el){
+    if(el.getBoundingClientRect().top < window.innerHeight - 100){
+      el.classList.add('active');
     }
   });
-});
+}
+window.addEventListener('scroll', reveal);
+window.addEventListener('load', reveal);
 </script>
 </body>
 </html>
